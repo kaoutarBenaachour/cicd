@@ -39,7 +39,7 @@ jobs:
         with:
           push: true
           context: .
-          tags: lavenderbloom/mycontainer:latest
+          tags: salma615/mycontainer:latest
 
   # deploy-azure:
   #   needs: docker
