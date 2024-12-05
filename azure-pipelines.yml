@@ -1,0 +1,20 @@
+trigger:
+  - main  # Trigger on the main branch
+
+pool:
+  vmImage: 'ubuntu-latest'  # Use the free Microsoft-hosted agent
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.x'  # Optional: Add dependencies if required.
+
+- script: |
+    echo "Building Docker image"
+    docker build -t my-docker-image:$(Build.BuildId) .
+  displayName: 'Build Docker Image'
+
+- script: |
+    echo "Testing Docker container"
+    docker run my-docker-image:$(Build.BuildId) echo "Container works!"
+  displayName: 'Test Docker Container'
